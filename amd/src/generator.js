@@ -56,8 +56,6 @@ define(['core/str'], function(Str) {
         this.form.addEventListener('submit', this.submit.bind(this));
     }
 
-
-
     /**
      * Place the introduction between the page heading and secondary navigation.
      *
@@ -241,7 +239,7 @@ define(['core/str'], function(Str) {
         var decoder = new TextDecoder();
         var pending = '';
 
-        var next = function() {
+        var readNextChunk = function() {
             return reader.read().then(function(chunk) {
                 if (chunk.done) {
                     return null;
@@ -266,10 +264,10 @@ define(['core/str'], function(Str) {
                         }
                     }
                 });
-                return next();
+                return readNextChunk();
             });
         };
-        return next();
+        return readNextChunk();
     };
 
     /**
@@ -354,7 +352,7 @@ define(['core/str'], function(Str) {
         var usage = ev.usage || {};
         this.region('summary').textContent = this.str('js_summary', {
             model: ev.model,
-            tokens: this.str('js_tokens', {in: usage.in || 0, out: usage.out || 0, cached: usage.cache || 0})
+            tokens: this.str('js_tokens', {'in': usage.in || 0, out: usage.out || 0, cached: usage.cache || 0})
         });
 
         var list = this.region('warnings');

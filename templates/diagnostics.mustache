@@ -23,6 +23,24 @@
     * rows - provider configuration and latest test result
     * actionurl - form action URL
     * sesskey - Moodle session key
+
+    Example context (json):
+    {
+        "rows": [
+            {
+                "label": "OpenAI",
+                "active": true,
+                "model": "gpt-4o-mini",
+                "configured": true,
+                "configurationlabel": "Configured",
+                "tested": false,
+                "providerid": "openai",
+                "testlabel": "Test OpenAI"
+            }
+        ],
+        "actionurl": "#",
+        "sesskey": "example"
+    }
 }}
 <div class="mb-4">
     <p class="mb-1">{{#str}} diag_intro, local_coursetitan {{/str}}</p>
