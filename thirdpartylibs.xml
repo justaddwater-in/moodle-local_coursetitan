@@ -17,10 +17,24 @@
     <name>Symfony Polyfill mbstring</name>
     <description>Dependency of PdfParser.</description>
     <license>MIT</license>
-    <version>1.x</version>
+    <version>1.x-dev</version>
     <repository>https://github.com/symfony/polyfill-mbstring</repository>
     <copyrights>
       <copyright>Fabien Potencier</copyright>
     </copyrights>
+  </library>
+  <library>
+    <location>vendor/composer</location>
+    <name>Composer autoloader</name>
+    <version>Not recorded</version>
+    <license>MIT</license>
+    <repository>https://github.com/composer/composer</repository>
+  </library>
+  <library>
+    <location>vendor/autoload.php</location>
+    <name>Composer generated autoload entry point</name>
+    <version>Not recorded</version>
+    <license>MIT</license>
+    <repository>https://github.com/composer/composer</repository>
   </library>
 </libraries>

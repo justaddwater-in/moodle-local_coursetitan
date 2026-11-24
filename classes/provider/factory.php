@@ -60,15 +60,27 @@ class factory {
 
         switch ($name) {
             case 'gemini':
-                return new gemini((string) ($cfg->geminikey ?? ''),
-                    (string) (($cfg->geminimodel ?? '') ?: self::DEFAULT_GEMINI_MODEL), $timeout, $maxtokens);
+                return new gemini(
+                    (string) ($cfg->geminikey ?? ''),
+                    (string) (($cfg->geminimodel ?? '') ?: self::DEFAULT_GEMINI_MODEL),
+                    $timeout,
+                    $maxtokens
+                );
             case 'anthropic':
-                return new anthropic((string) ($cfg->anthropickey ?? ''),
-                    (string) (($cfg->anthropicmodel ?? '') ?: self::DEFAULT_ANTHROPIC_MODEL), $timeout, $maxtokens);
+                return new anthropic(
+                    (string) ($cfg->anthropickey ?? ''),
+                    (string) (($cfg->anthropicmodel ?? '') ?: self::DEFAULT_ANTHROPIC_MODEL),
+                    $timeout,
+                    $maxtokens
+                );
             case 'openai':
             default:
-                return new openai((string) ($cfg->openaikey ?? ''),
-                    (string) (($cfg->openaimodel ?? '') ?: self::DEFAULT_OPENAI_MODEL), $timeout, $maxtokens);
+                return new openai(
+                    (string) ($cfg->openaikey ?? ''),
+                    (string) (($cfg->openaimodel ?? '') ?: self::DEFAULT_OPENAI_MODEL),
+                    $timeout,
+                    $maxtokens
+                );
         }
     }
 }

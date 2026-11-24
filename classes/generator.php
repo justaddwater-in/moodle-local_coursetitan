@@ -87,10 +87,15 @@ class generator {
         $this->emit(['event' => 'stage_start', 'stage' => 'outline']);
         $start = microtime(true);
         $before = $this->usage;
-        $outline = $this->call($system, $this->outline_prompt(), 'course_outline', schema::outline(),
+        $outline = $this->call(
+            $system,
+            $this->outline_prompt(),
+            'course_outline',
+            schema::outline(),
             function (array &$data): array {
                 return validator::outline($data, $this->maxsections, $this->maxmodules);
-            });
+            }
+        );
         if ($outline === null) {
             throw new \moodle_exception('outline_failed', 'local_coursetitan', '', implode(' ', $this->warnings));
         }
@@ -112,10 +117,15 @@ class generator {
             foreach ($section['modules'] as $mi => &$module) {
                 $type = $module['type'];
                 $prompt = $this->module_prompt($outline, $outlinetext, $si, $mi);
-                $content = $this->call($system, $prompt, 'course_' . $type, schema::module($type),
+                $content = $this->call(
+                    $system,
+                    $prompt,
+                    'course_' . $type,
+                    schema::module($type),
                     function (array &$data) use ($type): array {
                         return validator::module($type, $data, min(3, $this->quizquestions));
-                    });
+                    }
+                );
                 $module['content'] = $content;
                 if ($content === null) {
                     $this->warnings[] = "Skipped {$type} \"{$module['title']}\" because the AI output was invalid.";

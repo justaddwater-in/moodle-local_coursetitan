@@ -76,8 +76,11 @@ class openai extends base {
      * @return array
      */
     public function generate_json(string $system, array $messages, string $schemaname, array $schema): array {
-        $response = $this->post_json(self::ENDPOINT, ['Authorization: Bearer ' . $this->apikey],
-            $this->build_request($system, $messages, $schemaname, $schema));
+        $response = $this->post_json(
+            self::ENDPOINT,
+            ['Authorization: Bearer ' . $this->apikey],
+            $this->build_request($system, $messages, $schemaname, $schema)
+        );
         return $this->parse_response($response);
     }
 

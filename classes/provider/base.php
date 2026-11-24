@@ -159,8 +159,11 @@ abstract class base {
                 ]), $status);
             }
             if (!is_array($decoded)) {
-                throw new provider_exception(\get_string('provider_non_json_response', 'local_coursetitan',
-                    \get_string('provider_' . $this->get_name(), 'local_coursetitan')));
+                throw new provider_exception(\get_string(
+                    'provider_non_json_response',
+                    'local_coursetitan',
+                    \get_string('provider_' . $this->get_name(), 'local_coursetitan')
+                ));
             }
             return $decoded;
         }
@@ -251,8 +254,8 @@ abstract class base {
     protected function decode_output(string $text): array {
         $text = trim($text);
         // Defensive: strip a markdown fence if a model adds one despite schema enforcement.
-        if (str_starts_with($text, '```')) {
-            $text = preg_replace('/^```(?:json)?\s*|\s*```$/', '', $text);
+        if (str_starts_with($text, str_repeat(chr(96), 3))) {
+            $text = preg_replace('/^\x60{3}(?:json)?\s*|\s*\x60{3}$/', '', $text);
         }
         $data = json_decode($text, true);
         if (!is_array($data)) {

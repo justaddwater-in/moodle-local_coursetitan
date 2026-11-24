@@ -124,8 +124,11 @@ try {
         'event' => 'stage_done',
         'stage' => 'build',
         'elapsed_ms' => (int) round((microtime(true) - $started) * 1000),
-        'detail' => get_string('builtsummary', 'local_coursetitan',
-            ['sections' => count($spec['sections']), 'activities' => $activities]),
+        'detail' => get_string(
+            'builtsummary',
+            'local_coursetitan',
+            ['sections' => count($spec['sections']), 'activities' => $activities]
+        ),
     ]);
 
     $stream->send([

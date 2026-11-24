@@ -42,29 +42,64 @@ if ($hassiteconfig) {
     $s = fn(string $key, $a = null) => get_string($key, 'local_coursetitan', $a);
 
     // Provider.
-    $settings->add(new admin_setting_heading($p . 'h_provider', $s('heading_provider'),
-        $s('heading_provider_desc', (new moodle_url('/local/coursetitan/diagnostics.php'))->out())));
-    $settings->add(new admin_setting_configselect($p . 'provider', $s('provider'), $s('provider_desc'),
-        'openai', factory::get_choices()));
+    $settings->add(new admin_setting_heading(
+        $p . 'h_provider',
+        $s('heading_provider'),
+        $s('heading_provider_desc', (new moodle_url('/local/coursetitan/diagnostics.php'))->out())
+    ));
+    $settings->add(new admin_setting_configselect(
+        $p . 'provider',
+        $s('provider'),
+        $s('provider_desc'),
+        'openai',
+        factory::get_choices()
+    ));
     $settings->add(new admin_setting_configpasswordunmask($p . 'openaikey', $s('openaikey'), $s('openaikey_desc'), ''));
-    $settings->add(new admin_setting_configtext($p . 'openaimodel', $s('openaimodel'), $s('openaimodel_desc'),
-        factory::DEFAULT_OPENAI_MODEL, PARAM_NOTAGS));
+    $settings->add(new admin_setting_configtext(
+        $p . 'openaimodel',
+        $s('openaimodel'),
+        $s('openaimodel_desc'),
+        factory::DEFAULT_OPENAI_MODEL,
+        PARAM_NOTAGS
+    ));
     $settings->add(new admin_setting_configpasswordunmask($p . 'anthropickey', $s('anthropickey'), $s('anthropickey_desc'), ''));
-    $settings->add(new admin_setting_configtext($p . 'anthropicmodel', $s('anthropicmodel'), $s('anthropicmodel_desc'),
-        factory::DEFAULT_ANTHROPIC_MODEL, PARAM_NOTAGS));
+    $settings->add(new admin_setting_configtext(
+        $p . 'anthropicmodel',
+        $s('anthropicmodel'),
+        $s('anthropicmodel_desc'),
+        factory::DEFAULT_ANTHROPIC_MODEL,
+        PARAM_NOTAGS
+    ));
     $settings->add(new admin_setting_configpasswordunmask($p . 'geminikey', $s('geminikey'), $s('geminikey_desc'), ''));
-    $settings->add(new admin_setting_configtext($p . 'geminimodel', $s('geminimodel'), $s('geminimodel_desc'),
-        factory::DEFAULT_GEMINI_MODEL, PARAM_NOTAGS));
+    $settings->add(new admin_setting_configtext(
+        $p . 'geminimodel',
+        $s('geminimodel'),
+        $s('geminimodel_desc'),
+        factory::DEFAULT_GEMINI_MODEL,
+        PARAM_NOTAGS
+    ));
 
     // Course defaults.
     $settings->add(new admin_setting_heading($p . 'h_course', $s('heading_course'), ''));
     $settings->add(new admin_settings_coursecat_select($p . 'category', $s('category'), $s('category_desc'), 1));
     $settings->add(new admin_setting_configcheckbox($p . 'coursevisible', $s('coursevisible'), $s('coursevisible_desc'), 0));
     $settings->add(new admin_setting_configtext($p . 'maxsections', $s('maxsections'), $s('maxsections_desc'), 6, PARAM_INT, 4));
-    $settings->add(new admin_setting_configtext($p . 'maxactivities', $s('maxactivities'), $s('maxactivities_desc'),
-        4, PARAM_INT, 4));
-    $settings->add(new admin_setting_configtext($p . 'quizquestions', $s('quizquestions'), $s('quizquestions_desc'),
-        5, PARAM_INT, 4));
+    $settings->add(new admin_setting_configtext(
+        $p . 'maxactivities',
+        $s('maxactivities'),
+        $s('maxactivities_desc'),
+        4,
+        PARAM_INT,
+        4
+    ));
+    $settings->add(new admin_setting_configtext(
+        $p . 'quizquestions',
+        $s('quizquestions'),
+        $s('quizquestions_desc'),
+        5,
+        PARAM_INT,
+        4
+    ));
     $settings->add(new admin_setting_configtextarea($p . 'instructions', $s('instructions'), $s('instructions_desc'), ''));
 
     // Advanced.
@@ -73,8 +108,12 @@ if ($hassiteconfig) {
     $settings->add(new admin_setting_configtext($p . 'timeout', $s('timeout'), $s('timeout_desc'), 300, PARAM_INT, 8));
 
     $ADMIN->add('local_coursetitan', $settings);
-    $ADMIN->add('local_coursetitan', new admin_externalpage('local_coursetitan_diagnostics', $s('diagnostics'),
-        new moodle_url('/local/coursetitan/diagnostics.php'), 'moodle/site:config'));
+    $ADMIN->add('local_coursetitan', new admin_externalpage(
+        'local_coursetitan_diagnostics',
+        $s('diagnostics'),
+        new moodle_url('/local/coursetitan/diagnostics.php'),
+        'moodle/site:config'
+    ));
 
     // Moodle expects $settings to be the plugin's settings page or null when a category is used.
     $settings = null;

@@ -63,8 +63,12 @@ class course_builder {
 
             foreach (array_values($sections) as $i => $section) {
                 $sectionnum = $i + 1;
-                $record = $DB->get_record('course_sections', ['course' => $course->id, 'section' => $sectionnum],
-                    '*', MUST_EXIST);
+                $record = $DB->get_record(
+                    'course_sections',
+                    ['course' => $course->id, 'section' => $sectionnum],
+                    '*',
+                    MUST_EXIST
+                );
                 course_update_section($course, $record, [
                     'name' => \core_text::substr($section['title'], 0, 255),
                     'summary' => $this->clean($section['summary_html'] ?? ''),

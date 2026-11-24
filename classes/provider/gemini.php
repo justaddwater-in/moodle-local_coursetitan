@@ -116,8 +116,11 @@ class gemini extends base {
             throw new provider_exception(\get_string('provider_not_configured', 'local_coursetitan'));
         }
         $url = self::ENDPOINT . rawurlencode($this->model) . ':generateContent';
-        $response = $this->post_json($url, ['x-goog-api-key: ' . $this->apikey],
-            $this->build_request($system, $messages, $schemaname, $schema));
+        $response = $this->post_json(
+            $url,
+            ['x-goog-api-key: ' . $this->apikey],
+            $this->build_request($system, $messages, $schemaname, $schema)
+        );
         return $this->parse_response($response);
     }
 
